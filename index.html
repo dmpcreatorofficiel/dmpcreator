@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DMP Creator — Vidéo, photo et design graphique</title>
+<meta name="description" content="DMP Creator est une agence de création : production vidéo, photographie et design graphique.">
+<meta name="theme-color" content="#F28C00">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ECEAE6; --surface:#F7F6F3; --ink:#26231F; --muted:#6A655E; --line:#D3CFC8;
+  --orange:#F28C00; --orange-deep:#B5600A; --silver-a:#F4F4F3; --silver-b:#8E8D8B;
+  --on-orange:#1F1300;
+  color-scheme:light;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#1D1B19; --surface:#262320; --ink:#F1EEE9; --muted:#A8A299; --line:#3A3631;
+    --orange:#FFA218; --orange-deep:#D9780F; --silver-a:#F2F2F1; --silver-b:#7C7B79; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1D1B19; --surface:#262320; --ink:#F1EEE9; --muted:#A8A299; --line:#3A3631;
+  --orange:#FFA218; --orange-deep:#D9780F; --silver-a:#F2F2F1; --silver-b:#7C7B79; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 "Public Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+img,svg{max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:4px}
+.wrap{width:min(1120px,100% - 40px);margin-inline:auto}
+h1,h2,h3{font-family:"Archivo",system-ui,sans-serif;font-stretch:112%;margin:0;line-height:1.05;letter-spacing:-.01em}
+
+/* header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
+.brand{font:800 1.25rem "Archivo",sans-serif;font-stretch:118%;text-decoration:none;display:flex;align-items:baseline;gap:6px}
+.brand b{color:var(--orange-deep)}
+nav{display:flex;gap:18px;font-weight:500;font-size:.95rem}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--ink)}
+@media(max-width:560px){nav a:nth-child(2){display:none}}
+
+/* hero */
+.hero{padding:56px 0 40px}
+.mark{display:flex;align-items:stretch;gap:0;font:900 clamp(5rem,26vw,15rem)/.82 "Archivo",sans-serif;font-stretch:125%;letter-spacing:-.04em;user-select:none}
+.mark .dm{background:linear-gradient(180deg,var(--silver-a) 10%,var(--silver-b));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 1px 0 var(--line))}
+.mark .p{background:linear-gradient(180deg,var(--orange),var(--orange-deep));-webkit-background-clip:text;background-clip:text;color:transparent;position:relative;animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.mark .p::after{content:"";position:absolute;right:-.12em;top:.14em;width:.2em;height:.3em;background:var(--orange);clip-path:polygon(100% 0,0 50%,100% 100%)}
+@keyframes rise{from{opacity:0;transform:translateY(.12em)}to{opacity:1;transform:none}}
+.sub{margin:18px 0 0;font:600 clamp(1rem,3.2vw,1.35rem)/1.3 "Archivo",sans-serif;font-stretch:112%;color:var(--orange-deep);letter-spacing:.34em;text-transform:none}
+.lead{max-width:34rem;margin:28px 0 0;font-size:1.15rem;color:var(--muted)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;min-height:48px;padding:0 24px;border-radius:999px;font-weight:600;text-decoration:none;border:2px solid var(--ink);cursor:pointer;font-family:inherit;font-size:1rem}
+.btn.main{background:var(--orange);border-color:var(--orange);color:var(--on-orange)}
+.btn.main:hover{background:var(--orange-deep);border-color:var(--orange-deep);color:#fff}
+.btn.alt{background:transparent;color:var(--ink)}
+.btn.alt:hover{background:var(--ink);color:var(--bg)}
+
+/* sections */
+section{padding:56px 0}
+section h2{font-size:clamp(1.9rem,5vw,3rem);margin-bottom:12px}
+.intro{max-width:36rem;color:var(--muted);margin:0 0 32px}
+
+/* services : chaque cadre a le format réel du métier */
+.services{display:grid;gap:28px;grid-template-columns:1fr}
+.svc{display:grid;gap:14px;align-content:start}
+.frame{border:2px solid var(--ink);border-radius:6px;background:var(--surface);position:relative;overflow:hidden;display:grid;place-items:center}
+.svc[data-t="video"] .frame{aspect-ratio:16/9}
+.svc[data-t="photo"] .frame{aspect-ratio:4/5;max-height:340px}
+.svc[data-t="design"] .frame{aspect-ratio:1/1;max-height:300px}
+.svc h3{font-size:1.5rem}
+.svc p{margin:0;color:var(--muted)}
+.svc ul{margin:0;padding-left:1.1rem;color:var(--muted)}
+.ico-video{width:0;height:0;border-left:46px solid var(--orange);border-top:28px solid transparent;border-bottom:28px solid transparent;margin-left:10px}
+.ico-photo{width:90px;height:90px;border-radius:50%;border:10px solid var(--ink);box-shadow:inset 0 0 0 10px var(--orange)}
+.ico-design{width:96px;height:96px;background:linear-gradient(135deg,var(--silver-a),var(--silver-b));border-radius:50% 0 50% 0;outline:6px solid var(--orange);outline-offset:-6px}
+@media(min-width:760px){.services{grid-template-columns:repeat(3,1fr);align-items:start}}
+
+/* portfolio */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.filters button{min-height:44px;padding:0 18px;border-radius:999px;border:2px solid var(--line);background:transparent;color:var(--ink);font:500 .95rem "Public Sans",sans-serif;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.grid{display:grid;gap:20px;grid-template-columns:1fr;align-items:start}
+@media(min-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:960px){.grid{grid-template-columns:repeat(3,1fr)}}
+.tile{margin:0}
+.tile[hidden]{display:none}
+.tile .art{border-radius:6px;position:relative;overflow:hidden;display:grid;place-items:center;color:#fff}
+.tile[data-t="video"] .art{aspect-ratio:16/9;background:linear-gradient(120deg,#8A4A06,var(--orange))}
+.tile[data-t="photo"] .art{aspect-ratio:4/5;background:linear-gradient(170deg,#5A5650,#26231F)}
+.tile[data-t="design"] .art{aspect-ratio:1/1;background:linear-gradient(135deg,var(--silver-a),var(--silver-b));color:#26231F}
+.tile .art i{display:block}
+.tile[data-t="video"] .art i{width:0;height:0;border-left:34px solid #fff;border-top:21px solid transparent;border-bottom:21px solid transparent;margin-left:8px}
+.tile[data-t="photo"] .art i{width:64px;height:64px;border-radius:50%;border:6px solid #fff;box-shadow:0 0 0 8px rgba(255,255,255,.25)}
+.tile[data-t="design"] .art i{width:84px;height:84px;background:var(--orange);border-radius:50% 0 50% 0}
+.tile[data-t] .art.has-img{aspect-ratio:auto;background:var(--surface);display:block}
+.tile .art img{display:block;width:100%;height:auto}
+.tile .art a{display:block;position:relative}
+.tile .art .badge{position:absolute;right:10px;bottom:10px;background:var(--orange);color:var(--on-orange);font-weight:600;font-size:.85rem;padding:6px 12px;border-radius:999px}
+.tile figcaption{display:flex;justify-content:space-between;gap:12px;padding:12px 2px 0;font-weight:500}
+.tile figcaption span{color:var(--muted);font-weight:400;font-size:.9rem;white-space:nowrap}
+
+/* contact */
+.contact{background:var(--surface);border-block:1px solid var(--line)}
+form{display:grid;gap:16px;max-width:34rem}
+label{display:grid;gap:6px;font-weight:500}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:2px solid var(--line);border-radius:8px;padding:12px 14px;min-height:48px;width:100%}
+textarea{min-height:120px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:var(--orange);outline:none}
+footer{padding:28px 0 40px;color:var(--muted);font-size:.9rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.mark .p{animation:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="DMP Creator, accueil">DMP <b>Creator</b></a>
+    <nav aria-label="Navigation principale">
+      <a href="#services">Services</a>
+      <a href="#realisations">Réalisations</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div class="mark" aria-hidden="true"><span class="dm">DM</span><span class="p">P</span></div>
+    <p class="sub">CREATOR</p>
+    <h1 class="lead" style="font-family:'Public Sans',sans-serif;font-weight:400;font-stretch:100%;letter-spacing:0;line-height:1.5">Nous filmons, photographions et dessinons l’image de votre marque, de votre musique ou de votre événement.</h1>
+    <div class="cta">
+      <a class="btn main" href="#contact">Demander un devis</a>
+      <a class="btn alt" href="#realisations">Voir nos réalisations</a>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="wrap">
+      <h2>Ce que nous faisons</h2>
+      <p class="intro">Trois métiers, une seule équipe. Chaque projet commence par votre objectif, puis nous choisissons le bon format.</p>
+      <div class="services">
+        <article class="svc" data-t="video">
+          <div class="frame" aria-hidden="true"><span class="ico-video"></span></div>
+          <h3>Vidéo</h3>
+          <p>Du tournage au montage final.</p>
+          <ul><li>Clips musicaux</li><li>Spots publicitaires</li><li>Couverture d’événements</li></ul>
+        </article>
+        <article class="svc" data-t="photo">
+          <div class="frame" aria-hidden="true"><span class="ico-photo"></span></div>
+          <h3>Photo</h3>
+          <p>Des images nettes, prêtes à publier.</p>
+          <ul><li>Portraits et séances studio</li><li>Photos de produits</li><li>Reportages d’événements</li></ul>
+        </article>
+        <article class="svc" data-t="design">
+          <div class="frame" aria-hidden="true"><span class="ico-design"></span></div>
+          <h3>Design graphique</h3>
+          <p>Une identité visuelle claire et cohérente.</p>
+          <ul><li>Logos et chartes graphiques</li><li>Affiches et flyers</li><li>Pochettes et visuels réseaux sociaux</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="realisations">
+    <div class="wrap">
+      <h2>Réalisations</h2>
+      <p class="intro">Choisissez un métier pour filtrer les projets.</p>
+      <div class="filters" role="group" aria-label="Filtrer les réalisations">
+        <button type="button" data-f="all" aria-pressed="true">Tout</button>
+        <button type="button" data-f="video" aria-pressed="false">Vidéo</button>
+        <button type="button" data-f="photo" aria-pressed="false">Photo</button>
+        <button type="button" data-f="design" aria-pressed="false">Design graphique</button>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <h2>Parlons de votre projet</h2>
+      <p class="intro">Remplissez ce formulaire : votre message s’ouvre dans WhatsApp, prêt à envoyer.</p>
+      <form id="form">
+        <label>Votre nom <input name="nom" autocomplete="name" required></label>
+        <label>Type de projet
+          <select name="type">
+            <option>Vidéo</option><option>Photo</option><option>Design graphique</option><option>Plusieurs services</option>
+          </select>
+        </label>
+        <label>Votre message <textarea name="msg" required placeholder="Décrivez votre projet et la date souhaitée"></textarea></label>
+        <button class="btn main" type="submit">Envoyer sur WhatsApp</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="y">2026</span> DMP Creator</span>
+    <span>Vidéo · Photo · Design graphique</span>
+  </div>
+</footer>
+
+<script src="projets.js"></script>
+<script>
+(function(){
+  var btns=document.querySelectorAll('.filters button'),grid=document.getElementById('grid');
+  function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x)e.textContent=x;return e}
+  (window.PROJETS||[]).forEach(function(p){
+    var fig=el('figure','tile');fig.setAttribute('data-t',p.type);
+    var art=el('div','art');
+    if(p.image){
+      art.className='art has-img';
+      var img=document.createElement('img');img.src=p.image;img.loading='lazy';img.alt=p.titre+(p.client?' — '+p.client:'');
+      var href=p.lien||p.image,a=document.createElement('a');a.href=href;a.target='_blank';a.rel='noopener';
+      a.appendChild(img);
+      if(p.lien){a.appendChild(el('span','badge','Voir la vidéo'))}
+      art.appendChild(a);
+    }else{art.appendChild(document.createElement('i'))}
+    fig.appendChild(art);
+    var cap=el('figcaption','',p.titre);
+    if(p.client)cap.appendChild(el('span','',p.client));
+    fig.appendChild(cap);grid.appendChild(fig);
+  });
+  var tiles=document.querySelectorAll('.tile');
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){
+      var f=b.getAttribute('data-f');
+      btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+      tiles.forEach(function(t){t.hidden=(f!=='all'&&t.getAttribute('data-t')!==f)});
+    });
+  });
+  document.getElementById('y').textContent=new Date().getFullYear();
+  document.getElementById('form').addEventListener('submit',function(e){
+    e.preventDefault();
+    var d=new FormData(e.target);
+    var txt='Bonjour DMP Creator, je m’appelle '+d.get('nom')+'. Projet : '+d.get('type')+'. '+d.get('msg');
+    window.open('https://wa.me/'+(window.WHATSAPP||'')+'?text='+encodeURIComponent(txt),'_blank','noopener');
+  });
+  if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})}
+})();
+</script>
+</body>
+</html>
